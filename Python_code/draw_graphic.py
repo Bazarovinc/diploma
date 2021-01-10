@@ -1,22 +1,28 @@
+
+# импортирование библиотеки типизации данных
+from typing import List, NoReturn
+
 # импортирование библиотеки для построения графиков
 import matplotlib.pyplot as plt
+# импортирование библиотеки для работы с матрицами, векторами
+import numpy as np
+
 # импортирование константных значений тока и напряжения
-from constants import V, II
+from constants import II, V
 
 
-def draw_grraphic(I):
+def draw_graphic(current: List[np.array]) -> NoReturn:
+    """"Функция для отрисовки 2-ух графиков: реального и того, что получаем
+    с помощью нейронной сети"""
     plt.title("ВАХ резонансно туннельной структры")
     # построение графика ВАХ с полученными значениями Тока из нейронной сети
-    plt.plot(V, I, 'r-o', color='r',
+    plt.plot(V, current, 'r-o', color='r',
              label='Значения полученные при помощи нейронной сети')
     # построение графика реальных значений ВАХ
     plt.plot(V, II, 'r-o', color='b',
              label='Теоретически рассчитанные значения')
-    # подпись оси x
-    plt.xlabel('U, В')
-    # подпись оси y
-    plt.ylabel('I, А')
-    # легенда
-    plt.legend()
+    plt.xlabel('U, В')  # подпись оси x
+    plt.ylabel('I, А')  # подпись оси y
+    plt.legend()  # легенда
     plt.grid()  # включаем сетку
     plt.show()  # вывод графика
