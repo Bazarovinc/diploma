@@ -8,7 +8,7 @@ class Configurations(BaseSettings):
     hidden_nodes: int = 39
     output_nodes: int = 29
     learning_rate: float = 0.9
-    epohs: int = 200
+    epohs: int = 40
 
 
 # Создание объекта

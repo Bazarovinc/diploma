@@ -2,10 +2,12 @@ from configurations import net_config  # импортирование конфи
 from neural_network import NeuralNetwork  # импортирование нейронной сети
 from test_net import test_net  # импортирование функции тестирования
 from train_net import train_net  # импортирование функции тренировки
+from configure_train import configure_train
 
 # создание объекта нейронной сети
 net = NeuralNetwork(net_config.input_nodes, net_config.hidden_nodes, net_config.output_nodes)
+configure_train(net)
 # вызов функции тренировки сети
-train_net(net)
+#train_net(net)
 # вызов функции тестирования сети
-test_net(net)
+#test_net(net)

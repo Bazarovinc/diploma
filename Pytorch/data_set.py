@@ -31,6 +31,6 @@ class DataSet(Dataset):
 
 
 # создание объекта дата сета тренировочных данных
-train_data = DataSet('../data_sets/input_200k.csv', '../data_sets/output_200k.csv')
+train_data = DataSet('../data_sets/input_big1.csv', '../data_sets/output_big1.csv')
 # создание объекта дата сета тестовых данных
-test_data = DataSet('../data_sets/input_test.csv', '../data_sets/output_test.csv')
+test_data = DataSet('../data_sets/input_big_t.csv', '../data_sets/output_big_t.csv')

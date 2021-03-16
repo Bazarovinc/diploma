@@ -13,15 +13,23 @@ from data_set import test_data
 #  импортирование функции отрисовки графиков ВАХ
 from draw_graphic import draw_graphic
 
+# импортирование классов для использования функции оптимизации и функции потерь
+from torch import nn, optim
+
 
 def test_net(net):
     test_loader = DataLoader(test_data)
     # перевод сети в режим проверки (тестирования)
     net.eval()
     # проход по дата сету
+    # создаем объект функции потерь
+    criterion = nn.SmoothL1Loss()
     for i, (data, target) in enumerate(test_loader):
         # получение выходных значений сети
-        out = net(data) * 1e-5
+        out = net(data)
+        loss = criterion(out, target)
+        out *= 1e-5
+        print(loss.item())
         # создание массива со значениями ток и добавление 0 в начало
         current = np.array([0])
         # добавление значений полученных нейронной сетью
@@ -31,4 +39,4 @@ def test_net(net):
         # добавление реальных значений тока
         target_current = np.append(target_current, target.detach().numpy() * 1e-5)
         # отрисовка графиков ВАХ
-        draw_graphic(current, target_current, net_config.epohs, round(float(data[0][18]), 1))
+        draw_graphic(current, target_current, net_config.epohs, round(float(data[0][18]), 2))

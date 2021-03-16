@@ -17,6 +17,7 @@ class NeuralNetwork(nn.Module):
         self.fc2 = nn.Linear(hidden_nodes, output_nodes)
         # создание пакетной нормализации
         self.bn3 = nn.BatchNorm1d(output_nodes)
+        self.elu = torch.nn.ELU(1)
 
     def forward(self, x: torch.tensor) -> torch.tensor:
         """Метод прямого прохождения входных данных через нейронную сеть"""
@@ -27,7 +28,7 @@ class NeuralNetwork(nn.Module):
         # проход через пакетную нормализацию
         x = self.bn2(x)
         # проход через функцию активации-сигмоиду
-        x = torch.sigmoid(x)
+        x = self.elu(x)
         # проход по синапсам
         x = self.fc2(x)
         # проход через пакетную нормализацию
